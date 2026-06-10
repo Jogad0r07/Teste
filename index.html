@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard RH Shopee</title>
+
+  <link rel="stylesheet" href="style.css"/>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <!-- DataTables -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css"/>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
+</head>
+
+<body>
+
+<div id="loginPage" class="login-page">
+  <div class="login-box">
+    <h2>RH Dashboard Shopee</h2>
+    <input id="email" placeholder="Email"/>
+    <input id="password" type="password" placeholder="Senha"/>
+    <button onclick="login()">Entrar</button>
+  </div>
+</div>
+
+<div id="app" class="app hidden">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <h2>RH</h2>
+
+    <a onclick="showPage('dashboard')"><i class="fa fa-chart-line"></i> Dashboard</a>
+    <a onclick="showPage('faltas')"><i class="fa fa-user-xmark"></i> Faltas</a>
+    <a onclick="showPage('entrevistas')"><i class="fa fa-comments"></i> Entrevistas</a>
+    <a onclick="showPage('medidas')"><i class="fa fa-gavel"></i> Medidas</a>
+    <a onclick="showPage('suspensoes')"><i class="fa fa-ban"></i> Suspensões</a>
+    <a onclick="showPage('sinergia')"><i class="fa fa-users"></i> Sinergia</a>
+    <a onclick="showPage('colaboradores')"><i class="fa fa-id-card"></i> Colaboradores</a>
+
+    <button onclick="logout()">Sair</button>
+  </aside>
+
+  <!-- CONTENT -->
+  <main class="content">
+
+    <!-- DASHBOARD -->
+    <section id="dashboard" class="page active">
+      <h1>Dashboard Executivo</h1>
+
+      <div class="cards">
+        <div class="card">Headcount <span id="headcount">0</span></div>
+        <div class="card">Faltas <span id="faltasTotal">0</span></div>
+        <div class="card">Atestados <span id="atestadosTotal">0</span></div>
+        <div class="card">Suspensões <span id="suspensoesTotal">0</span></div>
+      </div>
+
+      <canvas id="chart1"></canvas>
+
+      <button onclick="openModal()">+ Ocorrência</button>
+    </section>
+
+    <!-- FALTAS -->
+    <section id="faltas" class="page">
+      <h1>Faltas e Atestados</h1>
+      <button onclick="addFalta()">Adicionar</button>
+      <table id="tFaltas" class="display"></table>
+    </section>
+
+    <!-- ENTREVISTAS -->
+    <section id="entrevistas" class="page">
+      <h1>Entrevistas ABS</h1>
+      <button onclick="addEntrevista()">Registrar</button>
+      <table id="tEntrevistas"></table>
+    </section>
+
+    <!-- MEDIDAS -->
+    <section id="medidas" class="page">
+      <h1>Medidas Disciplinares</h1>
+      <button onclick="addMedida()">Nova</button>
+      <table id="tMedidas"></table>
+    </section>
+
+    <!-- SUSPENSÕES -->
+    <section id="suspensoes" class="page">
+      <h1>Suspensões</h1>
+      <button onclick="addSuspensao()">Nova</button>
+      <table id="tSuspensoes"></table>
+    </section>
+
+    <!-- SINERGIA -->
+    <section id="sinergia" class="page">
+      <h1>Sinergia S1/S2</h1>
+      <button onclick="addSinergia()">Adicionar</button>
+      <table id="tSinergia"></table>
+    </section>
+
+    <!-- COLABORADORES -->
+    <section id="colaboradores" class="page">
+      <h1>Colaboradores</h1>
+      <button onclick="addColaborador()">Novo</button>
+      <table id="tColaboradores"></table>
+    </section>
+
+  </main>
+</div>
+
+<script src="firebase.js"></script>
+<script src="app.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+</body>
+</html>
